@@ -1,0 +1,8 @@
+supabase
+python-dotenv
+PyMuPDF
+fastapi
+uvicorn
+python-multipart
+gunicorn
+pandas
