@@ -10,7 +10,7 @@
 A **Hemogram API** é uma solução de backend projetada para processar laudos de exames de sangue em formato PDF. Ela expõe um endpoint simples que recebe um arquivo e um ID de cliente, acionando um pipeline de extração de dados que:
 
 1.  Lê o conteúdo do PDF, palavra por palavra, com suas coordenadas.
-2.  Agrupa palavras em linhas de forma eficiente, mesmo em layouts mais complexos.
+2.  Agrupa palavras em linhas de forma eficiente, mesmo em layouts diversos.
 3.  Identifica métricas de saúde conhecidas (ex: "Hemoglobina", "Colesterol LDL") usando um mapa de normalização.
 4.  Busca e extrai os valores numéricos associados a cada métrica, lidando com diferentes formatos.
 5.  Estrutura os dados extraídos em um DataFrame do Pandas, adicionando unidades de medida.
@@ -19,7 +19,7 @@ A **Hemogram API** é uma solução de backend projetada para processar laudos d
 
 ## 🚀 Funcionalidades Principais
 
--   **Extração Inteligente de PDF**: Utiliza a biblioteca `PyMuPDF` para uma análise do layout do documento, permitindo a extração precisa de dados mesmo em PDFs com formatação variada.
+-   **Extração Eficiente de PDF**: Utiliza a biblioteca `PyMuPDF` para uma análise do layout do documento, permitindo a extração de dados mesmo em PDFs com formatação variada.
 -   **Normalização de Métricas**: Converte diferentes nomenclaturas de exames (ex: "hdl", "colesterol hdl") para um formato padronizado, garantindo a consistência dos dados.
 -   **Parser de Valores Numéricos**: Capaz de interpretar e converter múltiplos formatos numéricos (ex: `1.234,56`, `3,5`, `10 x 10^3`) para o tipo `float`.
 -   **Integração com Supabase**: Salva os resultados extraídos de forma estruturada no banco de dados, associando-os a um usuário e a uma data de exame.
@@ -44,6 +44,13 @@ Esta API está hospedada na plataforma Render e pode ser acessada publicamente, 
 **URL Base:** `https://tcc-t47r.onrender.com`
 
 Você pode interagir diretamente com os endpoints utilizando esta URL.
+
+### Documentação Interativa (Swagger UI)
+
+A documentação interativa da API está disponível online. Através dela, é possível testar todos os endpoints diretamente do seu navegador:
+
+[**Acessar a Documentação da API Live**](https://tcc-t47r.onrender.com/docs)
+
 
 ### Exemplo de Uso com `curl` (Live)
 
@@ -163,21 +170,6 @@ Ocorre quando o PDF é válido, mas o parser não consegue extrair nenhuma métr
     "error": "Nenhum dado válido pôde ser extraído do PDF. Verifique o arquivo.",
     "client_id": "cliente-teste-001"
 }
-```
-
-## 🏗️ Estrutura do Projeto (Sugerida)
-
-```
-.
-├── .env                 # Arquivo para variáveis de ambiente (NÃO versionar)
-├── .gitignore           # Arquivos e pastas a serem ignorados pelo Git
-├── hemogram_api/
-│   ├── __init__.py
-│   └── services/
-│       ├── __init__.py
-│       └── hemogram_processor.py  # Módulo principal de processamento de PDF
-├── main.py              # Arquivo principal da API com os endpoints FastAPI
-└── requirements.txt     # Lista de dependências Python
 ```
 
 ## 🤝 Contribuição
